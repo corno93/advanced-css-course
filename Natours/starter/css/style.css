@@ -6,3 +6,204 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+
+/* universal selector - css reset */
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+/* everything related to font put below not above */
+body{
+    font-family: "Lato", sans-serif;
+    font-weight:400;
+    font-size:16px;
+    line-height: 1.7;
+    color: #777;
+    padding:30px;
+}
+
+.header{
+    height:95vh;
+    /* background-image: linear-gradient(to right, #286485, #286485), url("../img/hero.jpg"); */
+    background-image: linear-gradient(to right, rgba(126, 213, 111, 0.8), rgba(40, 180, 131, 0.8)), url("../img/hero.jpg");
+    background-size: cover;
+    background-position: top;
+    position: relative;
+
+    clip-path: polygon(0 0,100% 0, 100% 75vh, 0 100%)
+
+    
+}
+
+.logo-box{
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+
+.logo{
+    height:35px;
+
+}
+
+.logo:hover{
+    animation:moveinright 10s ease-out;
+}
+
+/* top and left are inrelation to the body. transform is in relation to the actual element */
+.text-box{
+    position: absolute;
+    top:40%;    
+    left:50%;
+    /* background-color: red; */
+    transform: translate(-50%, -50%);
+    text-align:center;
+}
+
+
+/* google search engine uses sites h1 text for its search optimization */
+.heading-primary{
+    color:#fff;
+    text-transform: uppercase;
+
+    /* below fixes shakey animation response - hides backpart of element */
+    backface-visibility: hidden;
+    margin-bottom: 60px;
+}
+
+/* block elements occupy 100% of the divs width */
+.heading-primary-main{
+    display: block;
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: 35px;
+
+    animation-name: moveinleft;
+    animation-duration: 3s;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1)
+
+    /* animation-iteration-count: 3; */
+    /* animation-delay: 3s; */
+
+}
+.heading-primary-sub{
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 17px;
+
+    animation:moveinright 1s ease-out
+
+    
+}
+
+@keyframes moveinleft{
+    0%{
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    55%{
+        transform: rotate(50deg)
+    }
+
+    80%{
+        transform: translateX(20px);
+        color: red;
+
+    }
+
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveinright{
+    0%{
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    80%{
+        transform: translateX(-20px);
+        color: red;
+
+    }
+
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes moveinbtn{
+    0%{
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* all transitions are written to the initial state class dec*/
+/* link is a psuedo class (eg hover, etc..)*/
+.btn:link, .btn:visited{
+    text-transform: uppercase;
+    text-decoration: none;
+    padding:15px 40px;
+    display: inline-block;
+    border-radius: 50px;
+    transition: all 0.2s;
+    position: relative;
+
+}
+
+.btn:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px;
+}
+
+/* active - when we click */
+.btn:active{
+    transform: translateY(-2px);
+    box-shadow: 0 1px 10px;
+}
+
+.btn-white{
+    background-color: white;
+    color:#777;
+}
+
+.btn::after{
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width:100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+    border-radius: 50px;
+    transition: all 0.4s;
+}
+
+.btn-white::after{
+    background-color: #ffff;
+}
+
+.btn:hover::after{
+    transform: scaleX(1.6) scaleY(1.4);
+    opacity: 0;
+}
+
+.btn-animated{
+    animation: moveinbtn 0.5s ease-in-out 0.75s;
+    /* animation will be applied before the animation starts*/
+    animation-fill-mode:backwards;
+}
